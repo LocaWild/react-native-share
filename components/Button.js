@@ -23,12 +23,16 @@ const styles = StyleSheet.create({
   }
 });
 
-export default ({buttonStyle, onPress, iconSrc, textStyle, children}) =>
+export default ({buttonStyle, onPress, iconSrc, textStyle, children, renderIcon}) =>
   <TouchableOpacity
     activeOpacity={0.5}
     style={[styles.button, buttonStyle]}
     onPress={onPress}>
-    <Image style={styles.icon} source={iconSrc} />
+    {
+      renderIcon
+        ? renderIcon()
+        : <Image style={styles.icon} source={iconSrc} />
+    }
     <Text style={[styles.buttonText, textStyle]}>
       {children}
     </Text>
